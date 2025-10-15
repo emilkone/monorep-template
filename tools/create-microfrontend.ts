@@ -92,7 +92,7 @@ async function createMicrofrontend(config: MicrofrontendConfig): Promise<void> {
   const templateDir = path.join(__dirname, '..', 'src', 'microfrontends', '_template')
   const targetDir = path.join(__dirname, '..', 'src', 'microfrontends', config.name)
 
-  console.log(`🚀 Создание микрофронтенда: ${config.name}`)
+  console.log(`🚀 Созд��ние микрофронтенда: ${config.name}`)
   console.log(`📁 Целевая директория: ${targetDir}`)
 
   // Проверяем, что директория не существует
@@ -106,19 +106,22 @@ async function createMicrofrontend(config: MicrofrontendConfig): Promise<void> {
 
   // Копируем файлы из шаблона
   const filesToCopy = [
-    'package.json',
-    'src/index.ts',
-    'src/types.ts',
-    'src/styles.module.css',
-    'src/__stories__/index.stories.tsx'
+    { template: 'package.json', target: 'package.json' },
+    { template: 'src/index.ts', target: 'src/index.ts' },
+    { template: 'src/types.ts', target: 'src/types.ts' },
+    { template: 'src/styles.module.css', target: 'src/styles.module.css' },
+    {
+      template: 'src/__stories__/index.stories.tsx.template',
+      target: 'src/__stories__/index.stories.tsx',
+    },
   ]
 
   for (const file of filesToCopy) {
-    const templatePath = path.join(templateDir, file)
-    const targetPath = path.join(targetDir, file)
-    
+    const templatePath = path.join(templateDir, file.template)
+    const targetPath = path.join(targetDir, file.target)
+
     await copyTemplateFile(templatePath, targetPath, config)
-    console.log(`✅ Создан файл: ${file}`)
+    console.log(`✅ Создан файл: ${file.target}`)
   }
 
   // Создаем основной компонент
