@@ -83,3 +83,5 @@ storybook-static/
 
 # Integration ready directory
 integration-ready/
+
+.history
