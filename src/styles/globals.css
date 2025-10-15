@@ -1,0 +1,139 @@
+/* Global styles for outsource development */
+
+@font-face {
+  font-family: 'dsText';
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url('https://www.cdn-tinkoff.ru/frontend-libraries/npm/react-kit-font/1.0.0/NeueHaasUnicaW1G-Regular.woff2')
+    format('woff2');
+}
+
+@font-face {
+  font-family: 'dsText Fallback';
+  font-weight: 400;
+  font-style: normal;
+  src: local('Arial');
+  ascent-override: 89.53%;
+  descent-override: 22.73%;
+  line-gap-override: 0%;
+  size-adjust: 100.3%;
+}
+
+@font-face {
+  font-family: 'dsText';
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url('https://www.cdn-tinkoff.ru/frontend-libraries/npm/react-kit-font/1.0.0/NeueHaasUnicaW1G-Medium.woff2')
+    format('woff2');
+}
+
+@font-face {
+  font-family: 'dsText Fallback';
+  font-weight: 500;
+  font-style: normal;
+  src: local('Arial');
+  ascent-override: 87.68%;
+  descent-override: 24.01%;
+  line-gap-override: 0%;
+  size-adjust: 102.88%;
+}
+
+@font-face {
+  font-family: 'dsText';
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  src: url('https://www.cdn-tinkoff.ru/frontend-libraries/npm/react-kit-font/1.0.0/NeueHaasUnicaW1G-Bold.woff2')
+    format('woff2');
+}
+
+@font-face {
+  font-family: 'dsText Fallback';
+  font-weight: 600;
+  font-style: normal;
+  src: local('Arial Bold');
+  ascent-override: 92.97%;
+  descent-override: 27.3%;
+  size-adjust: 97.45%;
+}
+
+@font-face {
+  font-family: 'dsHeading';
+  src: url('https://www.cdn-tinkoff.ru/frontend-libraries/npm/react-kit-font/1.0.0/TinkoffSans.woff2')
+    format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'dsHeading Fallback';
+  font-weight: 400;
+  font-style: normal;
+  src: local('Arial');
+  ascent-override: 103.36%;
+  descent-override: 36%;
+  line-gap-override: 0%;
+  size-adjust: 88.33%;
+}
+
+@font-face {
+  font-family: 'dsHeading';
+  src: url('https://www.cdn-tinkoff.ru/frontend-libraries/npm/react-kit-font/1.0.0/TinkoffSans_Medium.woff2')
+    format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'dsHeading Fallback';
+  font-weight: 500;
+  font-style: normal;
+  src: local('Arial');
+  ascent-override: 93.77%;
+  descent-override: 32.66%;
+  line-gap-override: 0%;
+  size-adjust: 97.37%;
+}
+
+@font-face {
+  font-family: 'dsHeading';
+  src: url('https://www.cdn-tinkoff.ru/frontend-libraries/npm/react-kit-font/1.0.0/TinkoffSans_Bold.woff2')
+    format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'dsHeading Fallback';
+  font-weight: 600;
+  font-style: normal;
+  src: local('Arial');
+  ascent-override: 89.11%;
+  descent-override: 31.04%;
+  line-gap-override: 0%;
+  size-adjust: 102.46%;
+}
+
+/* Reset and base styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'dsText', 'dsText Fallback', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}

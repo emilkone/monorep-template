@@ -1,0 +1,51 @@
+{
+  "name": "growth-blocks-outsource",
+  "version": "1.0.0",
+  "description": "Outsource repository for microfrontend development",
+  "private": true,
+  "engines": {
+    "node": ">=18"
+  },
+  "workspaces": [
+    "src/microfrontends/*",
+    "src/atoms/*"
+  ],
+  "scripts": {
+    "create-microfrontend": "ts-node tools/create-microfrontend.ts",
+    "prepare-integration": "ts-node tools/prepare-for-integration.ts",
+    "storybook": "storybook dev -p 3040 --disable-telemetry",
+    "storybook:build": "storybook build --quiet --output-dir public/storybook --disable-telemetry",
+    "check:types": "tsc --noEmit",
+    "check:js": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
+    "check:css": "stylelint \"src/**/*.css\"",
+    "check:all": "npm run check:types && npm run check:js && npm run check:css",
+    "format:js": "eslint --fix \"src/**/*.{js,jsx,ts,tsx}\"",
+    "format:css": "stylelint --fix \"src/**/*.css\"",
+    "format:all": "npm run format:js && npm run format:css"
+  },
+  "dependencies": {
+    "classnames": "^2.3.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "^7.4.6",
+    "@storybook/addon-styling-webpack": "0.0.6",
+    "@storybook/react": "^7.4.6",
+    "@storybook/react-webpack5": "^7.4.6",
+    "@types/react": "^18.2.24",
+    "@types/react-dom": "^18.2.7",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-plugin-react": "7.28.0",
+    "eslint-plugin-react-hooks": "^4.0.5",
+    "postcss": "^8.5.6",
+    "prettier": "^3.6.2",
+    "storybook": "^7.4.6",
+    "stylelint": "^15.10.3",
+    "stylelint-config-recommended": "^13.0.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.9.2"
+  }
+}
