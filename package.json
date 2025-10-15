@@ -13,6 +13,7 @@
   "scripts": {
     "create-microfrontend": "ts-node tools/create-microfrontend.ts",
     "prepare-integration": "ts-node tools/prepare-for-integration.ts",
+    "dev": "npm run storybook",
     "storybook": "storybook dev -p 3040 --disable-telemetry",
     "storybook:build": "storybook build --quiet --output-dir public/storybook --disable-telemetry",
     "check:types": "tsc --noEmit",
