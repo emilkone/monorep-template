@@ -13,6 +13,11 @@
 
 import { promises as fs } from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
+
+// ES module equivalent of __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 interface MicrofrontendConfig {
   name: string;
@@ -42,6 +47,11 @@ function parseArguments(): MicrofrontendConfig {
   const name = args[0];
   const description = args[1] || `Микрофронтенд ${name}`;
   const author = args[2] || 'unknown';
+
+  if (!name) {
+    console.error('❌ Ошибка: Необходимо указать имя микрофронтенда');
+    process.exit(1);
+  }
 
   // Генерируем имена компонентов
   const componentName = name
@@ -109,7 +119,7 @@ async function createMicrofrontend(config: MicrofrontendConfig): Promise<void> {
 
   // Копируем файлы из шаблона
   const filesToCopy = [
-    { template: 'package.json', target: 'package.json' },
+    { template: '_package.json', target: 'package.json' },
     { template: 'src/index.ts', target: 'src/index.ts' },
     { template: 'src/types.ts', target: 'src/types.ts' },
     { template: 'src/styles.module.css', target: 'src/styles.module.css' },
