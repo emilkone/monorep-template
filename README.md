@@ -3,35 +3,59 @@
 ### Установка зависимостей
 
 ```bash
-npm install
+yarn install
 ```
 
 ### Создание нового микрофронтенда
 
 ```bash
-npm run create-microfrontend <name> [description] [author]
+yarn create-microfrontend <name> [description] [author]
 ```
 
 **Примеры:**
 
 ```bash
 # Базовое создание
-npm run create-microfrontend my-page
+yarn create-microfrontend my-page
 
 # С описанием
-npm run create-microfrontend product-catalog "Каталог продуктов"
+yarn create-microfrontend product-catalog "Каталог продуктов"
 
 # С описанием и автором
-npm run create-microfrontend user-profile "Профиль пользователя" "Иван Иванов"
+yarn create-microfrontend user-profile "Профиль пользователя" "Иван Иванов"
 ```
 
 ### Запуск Storybook
 
 ```bash
-npm run storybook
+yarn storybook
 ```
 
 Storybook будет доступен по адресу: http://localhost:3040
+
+## 🛠 Доступные скрипты
+
+```bash
+# Разработка
+yarn dev                    # Запуск Storybook
+yarn storybook             # Запуск Storybook
+yarn storybook:build       # Сборка Storybook
+
+# Создание микрофронтендов
+yarn create-microfrontend  # Создать новый микрофронтенд
+yarn prepare-integration   # Подготовить к интеграции
+
+# Проверка кода
+yarn check:types           # Проверка TypeScript типов
+yarn check:js              # Проверка JavaScript/TypeScript кода
+yarn check:css             # Проверка CSS стилей
+yarn check:all             # Все проверки
+
+# Форматирование
+yarn format:js             # Форматирование JS/TS кода
+yarn format:css            # Форматирование CSS
+yarn format:all            # Форматирование всего кода
+```
 
 ## 📁 Структура проекта
 
@@ -44,6 +68,17 @@ src/
 └── styles/
     └── globals.css         # Глобальные стили
 ```
+
+## 🚀 Технологии
+
+- **React 18+** - UI библиотека
+- **TypeScript** - типизированный JavaScript
+- **Storybook** - инструмент для разработки компонентов
+- **Yarn** - менеджер пакетов
+- **tsx** - быстрый TypeScript/JSX runner
+- **CSS Modules** - изоляция стилей
+- **ESLint** - линтер для JavaScript/TypeScript
+- **Stylelint** - линтер для CSS
 
 ## 🛠 Разработка микрофронтендов
 

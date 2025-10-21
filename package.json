@@ -11,18 +11,18 @@
     "src/atoms/*"
   ],
   "scripts": {
-    "create-microfrontend": "ts-node tools/create-microfrontend.ts",
-    "prepare-integration": "ts-node tools/prepare-for-integration.ts",
-    "dev": "npm run storybook",
+    "create-microfrontend": "tsx tools/create-microfrontend.ts",
+    "prepare-integration": "tsx tools/prepare-for-integration.ts",
+    "dev": "yarn storybook",
     "storybook": "storybook dev -p 3040 --disable-telemetry",
     "storybook:build": "storybook build --quiet --output-dir public/storybook --disable-telemetry",
     "check:types": "tsc --noEmit",
     "check:js": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
     "check:css": "stylelint \"src/**/*.css\"",
-    "check:all": "npm run check:types && npm run check:js && npm run check:css",
+    "check:all": "yarn check:types && yarn check:js && yarn check:css",
     "format:js": "eslint --fix \"src/**/*.{js,jsx,ts,tsx}\"",
     "format:css": "stylelint --fix \"src/**/*.css\"",
-    "format:all": "npm run format:js && npm run format:css"
+    "format:all": "yarn format:js && yarn format:css"
   },
   "dependencies": {
     "classnames": "^2.3.2",
@@ -53,7 +53,8 @@
     "storybook": "^7.4.6",
     "stylelint": "^15.10.3",
     "stylelint-config-recommended": "^13.0.0",
-    "ts-node": "^10.9.1",
+    "ts-loader": "^9.5.4",
+    "tsx": "^4.7.0",
     "typescript": "^5.9.2"
   },
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
