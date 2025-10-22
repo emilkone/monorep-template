@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "classnames": "^2.3.2",
+    "prompts": "^2.4.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
@@ -40,6 +41,7 @@
     "@storybook/addon-styling-webpack": "0.0.6",
     "@storybook/react": "^7.4.6",
     "@storybook/react-webpack5": "^7.4.6",
+    "@types/prompts": "^2.4.9",
     "@types/react": "^18.2.24",
     "@types/react-dom": "^18.2.7",
     "autoprefixer": "^10.4.21",
