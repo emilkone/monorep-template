@@ -1,3 +1,4 @@
+/** @type {import('eslint').Linter.Config} */
 module.exports = {
   root: true,
   env: {
@@ -7,11 +8,12 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
-    '@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'prettier',
   ],
+  ignores: ['node_modules/*', 'public/**/*', 'src/microfrontends/_template'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -28,6 +30,13 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'warn',
+    'no-warning-comments': [
+      'error',
+      {
+        terms: ['@FIXME'],
+        location: 'anywhere',
+      },
+    ],
   },
   settings: {
     react: {

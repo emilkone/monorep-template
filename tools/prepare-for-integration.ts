@@ -35,7 +35,7 @@ function parseArguments(): IntegrationConfig {
     process.exit(1);
   }
 
-  const microfrontendName = args[0];
+  const microfrontendName = args[0]!;
   const sourceDir = path.join(__dirname, '..', 'src', 'microfrontends', microfrontendName);
   const outputDir = path.join(__dirname, '..', 'integration-ready', microfrontendName);
 

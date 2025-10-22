@@ -44,6 +44,8 @@
     "@types/prompts": "^2.4.9",
     "@types/react": "^18.2.24",
     "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^8.46.2",
+    "@typescript-eslint/parser": "^8.46.2",
     "autoprefixer": "^10.4.21",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^7.2.0",
