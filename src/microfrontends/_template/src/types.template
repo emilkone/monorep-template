@@ -26,13 +26,15 @@ export interface UserAgent {
 
 type Layout = 'desktop' | 'mobile';
 
+type Theme = 'light' | 'dark';
 
 export type {{COMPONENT_NAME}}Props = {
   title: string
   description?: string
-  di?: {
+  di: {
     userAgent?: UserAgent
     layout?: Layout
+    theme?: Theme
   }
   // Добавьте дополнительные пропсы по необходимости
 }
