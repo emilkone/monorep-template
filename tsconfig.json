@@ -8,9 +8,9 @@
     "target": "ES2019",
     "module": "ESNext",
     "jsx": "react-jsx",
+    "allowJs": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "declaration": true,
     "downlevelIteration": true,
     "strictNullChecks": true,
     "moduleResolution": "Node",
@@ -26,8 +26,5 @@
     "noUncheckedIndexedAccess": true
   },
   "include": ["src/**/*.tsx", "src/**/*.ts", "tools/**/*.ts"],
-  "exclude": [
-    "node_modules/*",
-    "public/**/*",
-  ]
+  "exclude": ["node_modules/*", "public/**/*", "src/microfrontends/_template"]
 }

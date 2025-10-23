@@ -33,9 +33,5 @@
     "../src/**/*.stories.ts",
     "../src/typings.d.ts"
   ],
-  "exclude": [
-    "node_modules/*",
-    "public/**/*",
-    "../src/microfrontends/_template/**/*"
-  ]
+  "exclude": ["node_modules/*", "public/**/*", "../src/microfrontends/_template/**/*"]
 }

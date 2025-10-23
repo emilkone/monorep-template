@@ -1,4 +1,5 @@
 /* Global styles for outsource development */
+@import './boxy-reset.css';
 
 @font-face {
   font-family: 'dsText';

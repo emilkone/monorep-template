@@ -1,0 +1,280 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
+  outline: 0;
+}
+
+/* make sure to set some focus styles for accessibility */
+:focus {
+  outline: 0;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+
+  &::-moz-selection {
+    color: rgba(0, 0, 0, 0.8) !important;
+    background: rgba(255, 221, 45, 0.32) !important;
+    text-shadow: none;
+  }
+
+  &::selection {
+    color: rgba(0, 0, 0, 0.8) !important;
+    background: rgba(255, 221, 45, 0.32) !important;
+    text-shadow: none;
+  }
+
+  &::-moz-focus-inner {
+    border: 0;
+  }
+}
+
+body,
+html,
+button,
+input,
+select,
+textarea {
+  color: var(--tui-text-primary, rgba(0, 0, 0, 0.8));
+}
+
+html {
+  font:
+    13px/18px haas,
+    pragmatica,
+    -apple-system,
+    BlinkMacSystemFont,
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+  font-feature-settings:
+    'kern' 1,
+    'liga' 0,
+    'clig' 0;
+  -moz-font-feature-settings:
+    'kern' 1,
+    'liga' 0,
+    'clig' 0;
+  -ms-font-feature-settings:
+    'kern' 1,
+    'liga' 0,
+    'clig' 0;
+  -o-font-feature-settings:
+    'kern' 1,
+    'liga' 0,
+    'clig' 0;
+  -webkit-font-feature-settings:
+    'kern' 1,
+    'liga' 0,
+    'clig' 0;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+  color: var(--tui-text-action, #126df7);
+  background-color: transparent;
+}
+
+a:active,
+a:hover {
+  outline: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  a:hover {
+    color: var(--tui-text-action-hover, #156ed4);
+  }
+}
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 0;
+}
+
+code {
+  display: block;
+  padding: 6px;
+  background-color: var(--tui-background-neutral-1-hover, #244a7f);
+  border-radius: 6px;
+}
+
+img {
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+  vertical-align: middle;
+}
+
+figure {
+  margin: 0;
+}
+
+button {
+  font-size: 100%;
+  line-height: normal;
+  text-transform: none;
+  -webkit-appearance: button;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+}
+
+button[disabled] {
+  cursor: default;
+}
+
+button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+/* по следам бага PFPBLOCKS-6438 */
+video {
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+}

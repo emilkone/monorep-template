@@ -14,8 +14,8 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import prompts from 'prompts';
 
-// ES module equivalent of __dirname
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -27,20 +27,25 @@ interface MicrofrontendConfig {
   componentFileName: string;
   microfrontendName: string;
   microfrontendCategory: string;
+  platform: 'desktop' | 'mobile' | 'common';
 }
 
-function parseArguments(): MicrofrontendConfig {
+function printUsage() {
+  console.log('');
+  console.log('Использование:');
+  console.log('  npm run create-microfrontend <name> [description] [author]');
+  console.log('');
+  console.log('Примеры:');
+  console.log('  npm run create-microfrontend my-page "Моя страница" "Иван Иванов"');
+  console.log('  npm run create-microfrontend product-catalog "Каталог продуктов"');
+}
+
+async function parseArguments(): Promise<MicrofrontendConfig> {
   const args = process.argv.slice(2);
 
   if (args.length === 0) {
     console.error('❌ Ошибка: Необходимо указать имя микрофронтенда');
-    console.log('');
-    console.log('Использование:');
-    console.log('  npm run create-microfrontend <name> [description] [author]');
-    console.log('');
-    console.log('Примеры:');
-    console.log('  npm run create-microfrontend my-page "Моя страница" "Иван Иванов"');
-    console.log('  npm run create-microfrontend product-catalog "Каталог продуктов"');
+    printUsage();
     process.exit(1);
   }
 
@@ -53,24 +58,49 @@ function parseArguments(): MicrofrontendConfig {
     process.exit(1);
   }
 
+  // Интерактивный выбор платформы
+  const platformResponse = await prompts({
+    type: 'select',
+    name: 'value',
+    message: 'Для какой платформы создаётся микрофронтенд?',
+    choices: [
+      { title: 'Desktop', value: 'desktop' },
+      { title: 'Mobile', value: 'mobile' },
+      { title: 'Общая (для обеих)', value: 'common' },
+    ],
+    initial: 0,
+  });
+
+  if (!platformResponse.value) {
+    console.error('❌ Выбор платформы отменён');
+    process.exit(1);
+  }
+
+  const platform = platformResponse.value;
+
+  const prefix = platform === 'common' ? 'independent' : platform;
+
+  const nameWithPrefix = `${prefix}-${name}`;
+
   // Генерируем имена компонентов
-  const componentName = name
+  const componentName = `${nameWithPrefix
     .split('-')
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join('');
+    .join('')}`;
 
-  const componentFileName = name.replace(/-/g, '-');
-  const microfrontendName = name;
-  const microfrontendCategory = 'pages'; // можно сделать настраиваемым
+  const componentFileName = nameWithPrefix;
+  const microfrontendName = nameWithPrefix;
+  const microfrontendCategory = 'pages';
 
   return {
-    name,
+    name: nameWithPrefix,
     description,
     author,
     componentName,
     componentFileName,
     microfrontendName,
     microfrontendCategory,
+    platform,
   };
 }
 
@@ -92,23 +122,27 @@ async function copyTemplateFile(
   targetPath: string,
   config: MicrofrontendConfig
 ): Promise<void> {
-  const content = await fs.readFile(templatePath, 'utf-8');
-  const processedContent = await replaceTemplateVariables(content, config);
+  try {
+    const content = await fs.readFile(templatePath, 'utf-8');
+    const processedContent = await replaceTemplateVariables(content, config);
 
-  // Создаем директорию если не существует
-  await fs.mkdir(path.dirname(targetPath), { recursive: true });
-
-  await fs.writeFile(targetPath, processedContent, 'utf-8');
+    await fs.mkdir(path.dirname(targetPath), { recursive: true });
+    await fs.writeFile(targetPath, processedContent, 'utf-8');
+  } catch (error) {
+    console.error(`❌ Ошибка при копировании файла: ${templatePath}`);
+    throw error;
+  }
 }
 
 async function createMicrofrontend(config: MicrofrontendConfig): Promise<void> {
   const templateDir = path.join(__dirname, '..', 'src', 'microfrontends', '_template');
   const targetDir = path.join(__dirname, '..', 'src', 'microfrontends', config.name);
 
-  console.log(`🚀 Созд��ние микрофронтенда: ${config.name}`);
+  console.log(`🚀 Создание микрофронтенда: ${config.name}`);
   console.log(`📁 Целевая директория: ${targetDir}`);
+  console.log(`📱 Платформа: ${config.platform}`);
 
-  // Проверяем, что директория не существует
+  // Проверка существования директории
   try {
     await fs.access(targetDir);
     console.error(`❌ Ошибка: Микрофронтенд с именем "${config.name}" уже существует`);
@@ -120,8 +154,8 @@ async function createMicrofrontend(config: MicrofrontendConfig): Promise<void> {
   // Копируем файлы из шаблона
   const filesToCopy = [
     { template: '_package.json', target: 'package.json' },
-    { template: 'src/index.ts', target: 'src/index.ts' },
-    { template: 'src/types.ts', target: 'src/types.ts' },
+    { template: 'src/index.template', target: 'src/index.ts' },
+    { template: 'src/types.template', target: 'src/types.ts' },
     { template: 'src/styles.module.css', target: 'src/styles.module.css' },
     {
       template: 'src/__stories__/index.stories.tsx.template',
@@ -138,7 +172,11 @@ async function createMicrofrontend(config: MicrofrontendConfig): Promise<void> {
   }
 
   // Создаем основной компонент
-  const componentTemplatePath = path.join(templateDir, 'src', '{{COMPONENT_FILE_NAME}}.tsx');
+  const componentTemplatePath = path.join(
+    templateDir,
+    'src',
+    '{{COMPONENT_FILE_NAME}}.tsx.template'
+  );
   const componentTargetPath = path.join(targetDir, 'src', `${config.componentFileName}.tsx`);
 
   await copyTemplateFile(componentTemplatePath, componentTargetPath, config);
@@ -149,18 +187,22 @@ async function createMicrofrontend(config: MicrofrontendConfig): Promise<void> {
   console.log('');
   console.log('Следующие шаги:');
   console.log(`1. Перейдите в директорию: cd src/microfrontends/${config.name}`);
-  console.log('2. Установите зависимости: npm install');
+  console.log('2. Установите зависимости: yarn install');
   console.log('3. Реализуйте логику компонента');
   console.log('4. Добавьте тесты и истории');
-  console.log('5. Запустите Storybook: npm run storybook');
+  console.log('5. В корневой директории проекта запустите Storybook: yarn storybook');
 }
 
 async function main(): Promise<void> {
   try {
-    const config = parseArguments();
+    const config = await parseArguments();
     await createMicrofrontend(config);
   } catch (error) {
-    console.error('❌ Ошибка при создании микрофронтенда:', error);
+    if (error instanceof Error) {
+      console.error('❌ Ошибка при создании микрофронтенда:', error.message);
+    } else {
+      console.error('❌ Неизвестная ошибка:', error);
+    }
     process.exit(1);
   }
 }

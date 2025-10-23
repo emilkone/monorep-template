@@ -8,6 +8,7 @@ yarn-error.log*
 dist/
 build/
 public/storybook/
+*.d.ts
 
 # IDE
 .vscode/

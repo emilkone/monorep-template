@@ -12,6 +12,7 @@ export const Default = {
   args: {
     title: 'Заголовок микрофронтенда',
     description: 'Описание микрофронтенда',
+    di: {}
   },
   name: 'default',
 }
