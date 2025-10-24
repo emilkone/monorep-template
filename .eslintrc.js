@@ -13,7 +13,7 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'prettier',
   ],
-  ignorePatterns: ['node_modules/*', 'public/**/*', 'src/microfrontends/_template'],
+  ignorePatterns: ['node_modules/*', 'public/**/*', 'src/microfrontends/_template/**/*'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -35,6 +35,21 @@ module.exports = {
       {
         terms: ['@FIXME'],
         location: 'anywhere',
+      },
+    ],
+    'no-restricted-syntax': [
+      'error',
+      {
+        selector:
+          'JSXAttribute[name.name="className"][value.type="Literal"][value.value=/^[^ ]*$/] ' +
+          ':not(JSXAttribute[value.type="JSXExpressionContainer"])',
+        message:
+          'Прямое использование строковых литералов в className запрещено. Используйте CSS-модули: className={styles.myClass}',
+      },
+      {
+        selector: 'JSXAttribute[name.name="className"] > Literal[value.value=/ /]',
+        message:
+          'Использование строк с пробелами (составных классов) в className запрещено. Используйте только CSS-модули.',
       },
     ],
   },
