@@ -190,7 +190,8 @@ async function createMicrofrontend(config: MicrofrontendConfig): Promise<void> {
   console.log('2. Установите зависимости: yarn install');
   console.log('3. Реализуйте логику компонента');
   console.log('4. Добавьте тесты и истории');
-  console.log('5. В корневой директории проекта запустите Storybook: yarn storybook');
+  console.log('5. Удалите все @FIXME комментарии');
+  console.log('6. В корневой директории проекта запустите Storybook: yarn storybook');
 }
 
 async function main(): Promise<void> {

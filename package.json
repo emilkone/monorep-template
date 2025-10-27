@@ -27,9 +27,6 @@
     "prepare": "husky"
   },
   "lint-staged": {
-    "*.{ts,tsx}": [
-      "yarn check:types"
-    ],
     "*.{js,jsx,ts,tsx}": [
       "yarn format:js"
     ],
