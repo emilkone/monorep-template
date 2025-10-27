@@ -13,6 +13,14 @@
 - **ESLint** - линтер для JavaScript/TypeScript
 - **Stylelint** - линтер для CSS
 
+В проекте рекомендуется использовать `@tinkoff/utils` вместо `lodash` для работы с утилитарными функциями. Это связано с тем, что `@tinkoff/utils` предоставляет единый подход к утилитам в экосистеме Tinkoff
+
+Установка:
+
+```bash
+yarn add @tinkoff/utils
+```
+
 ## 🛠 Команды разработки
 
 ### Основные команды
@@ -247,4 +255,42 @@ type LoadingState = 'idle' | 'loading' | 'success' | 'error';
 
 // Утилитарные типы
 type Optional<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
+```
+
+## 🧰 Библиотеки утилит
+
+### @tinkoff/utils
+
+В проекте рекомендуется использовать `@tinkoff/utils` вместо `lodash` для работы с утилитарными функциями. Это связано с тем, что:
+
+- `@tinkoff/utils` предоставляет более современный API
+- Лучшая оптимизация для tree-shaking
+- Поддержка TypeScript "из коробки"
+- Единый подход к утилитам в экосистеме Tinkoff
+
+Установка:
+
+```bash
+yarn add @tinkoff/utils
+```
+
+Пример использования:
+
+```ts
+import { map, filter, compose } from '@tinkoff/utils/lib/array';
+import { prop, pick } from '@tinkoff/utils/lib/object';
+
+const users = [
+  { id: 1, name: 'Alice', age: 25, active: true },
+  { id: 2, name: 'Bob', age: 30, active: false },
+  { id: 3, name: 'Charlie', age: 35, active: true },
+];
+
+// Получить имена активных пользователей старше 25 лет
+const getActiveUserNames = compose(
+  map(prop('name')),
+  filter((user) => user.active && user.age > 25)
+);
+
+const result = getActiveUserNames(users); // ['Charlie']
 ```
