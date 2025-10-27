@@ -9,5 +9,11 @@ module.exports = {
     ],
     'declaration-block-trailing-semicolon': null,
     'no-descending-specificity': null,
+    'selector-max-type': [
+      0,
+      {
+        ignore: ['compounded', 'descendant', 'child'],
+      },
+    ],
   },
 };

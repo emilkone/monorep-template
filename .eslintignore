@@ -1,0 +1,5 @@
+!.jest
+!.lints
+!.storybook
+!.eslintrc.js
+!.stylelintrc.js
