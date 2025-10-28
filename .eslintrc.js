@@ -13,7 +13,6 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'prettier',
   ],
-  ignorePatterns: ['node_modules/*', 'public/**/*', 'src/microfrontends/_template/**/*'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {

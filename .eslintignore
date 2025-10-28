@@ -3,3 +3,6 @@
 !.storybook
 !.eslintrc.js
 !.stylelintrc.js
+src/microfrontends/_template
+node_modules/
+public/
