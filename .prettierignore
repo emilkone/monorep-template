@@ -1,4 +1,4 @@
-src/microfrontends/_template
+# src/microfrontends/_template
 node_modules
 dist
 build

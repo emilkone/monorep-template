@@ -1,0 +1,50 @@
+export interface UserAgent {
+  browser?: {
+    browserEngine?: 'safari' | 'chrome' | 'firefox' | 'other';
+  };
+  device?: {
+    /**
+     * Possible type:
+     * console, mobile, tablet, smarttv, wearable, embedded
+     */
+    type:
+      | 'console'
+      | 'mobile'
+      | 'tablet'
+      | 'smarttv'
+      | 'wearable'
+      | 'embedded'
+      | string
+      | undefined;
+  };
+  os?: {
+    /**
+     * Possible 'os.name'
+     * AIX, Amiga OS, Android, Arch, Bada, BeOS, BlackBerry, CentOS, Chromium OS, Contiki,
+     * Fedora, Firefox OS, FreeBSD, Debian, DragonFly, Gentoo, GNU, Haiku, Hurd, iOS,
+     * Joli, Linpus, Linux, Mac OS, Mageia, Mandriva, MeeGo, Minix, Mint, Morph OS, NetBSD,
+     * Nintendo, OpenBSD, OpenVMS, OS/2, Palm, PCLinuxOS, Plan9, Playstation, QNX, RedHat,
+     * RIM Tablet OS, RISC OS, Sailfish, Series40, Slackware, Solaris, SUSE, Symbian, Tizen,
+     * Ubuntu, UNIX, VectorLinux, WebOS, Windows [Phone/Mobile], Zenwalk
+     */
+    name: 'Android' | 'iOS' | string | undefined;
+    version: string | undefined;
+  };
+}
+
+type Layout = 'desktop' | 'mobile';
+
+export type DiMap = {
+  userAgent?: UserAgent;
+  layout?: Layout;
+};
+
+type Di = {
+  get<T extends keyof DiMap>(key: T): DiMap[T];
+};
+
+export type DesktopUserProfileProps = {
+  title: string;
+  description?: string;
+  di: Di;
+};

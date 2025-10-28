@@ -153,10 +153,10 @@ async function createMicrofrontend(config: MicrofrontendConfig): Promise<void> {
 
   // Копируем файлы из шаблона
   const filesToCopy = [
-    { template: '_package.json', target: 'package.json' },
-    { template: 'src/index.template', target: 'src/index.ts' },
-    { template: 'src/types.template', target: 'src/types.ts' },
-    { template: 'src/styles.module.css', target: 'src/styles.module.css' },
+    { template: 'package.json.template', target: 'package.json' },
+    { template: 'src/index.ts.template', target: 'src/index.ts' },
+    { template: 'src/types.ts.template', target: 'src/types.ts' },
+    { template: 'src/styles.module.css.template', target: 'src/styles.module.css' },
     {
       template: 'src/__stories__/index.stories.tsx.template',
       target: 'src/__stories__/index.stories.tsx',
