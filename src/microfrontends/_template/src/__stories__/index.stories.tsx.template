@@ -1,18 +1,38 @@
-import type { StoryFn } from '@storybook/react'
+import { FC } from 'react';
+import type { StoryFn, StoryObj } from '@storybook/react'
 import {{COMPONENT_NAME}}, {
   type {{COMPONENT_NAME}}Props,
 } from '../index'
+import { DiMap } from '../types';
 
-const Block: StoryFn<typeof {{COMPONENT_NAME}}> = (props: {{COMPONENT_NAME}}Props) => (
-  <{{COMPONENT_NAME}} {...props} />
-)
+type StoryProps = Omit<{{COMPONENT_NAME}}Props, 'di'> & {
+  layout: 'desktop' | 'mobile';
+};
 
-export const Default = {
+function get<T extends keyof DiMap>(this: DiMap, key: T): DiMap[T] {
+  return this[key];
+}
+
+const Block: StoryFn<FC<StoryProps>> = ({ layout, ...props }: StoryProps) => {
+  const values: DiMap = {
+    layout,
+  };
+
+  return <{{COMPONENT_NAME}} {...props} di={{ get: get.bind(values) as typeof get }} />;
+};
+
+export const Default: StoryObj<typeof Block> = {
   render: Block,
   args: {
     title: 'Заголовок микрофронтенда',
     description: 'Описание микрофронтенда',
-    di: {}
+    layout: 'desktop',
+  },
+  argTypes: {
+    layout: {
+      control: 'radio',
+      options: ['desktop', 'mobile'],
+    },
   },
   name: 'default',
 }
